@@ -1,25 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Filter from "./components/Filter";
+import TextBox from "./components/TextBox";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    content: []
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    const paras = e.target.paras.value;
+    const startWith = e.target.startWith.checked;
+    const api_call = await fetch(
+      `https://cors-anywhere.herokuapp.com/http://baseballipsum.apphb.com/api/?paras=${paras}&startwithlorem=${startWith}`
+    );
+    const res = await api_call.json();
+    this.setState({ content: res });
+    console.log(startWith);
+    //console.log(this.state.content[0]);
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Loremi Apps</h1>
+        <Filter onSubmit={this.handleSubmit} />
+        <TextBox content={this.state.content} />
       </div>
     );
   }
