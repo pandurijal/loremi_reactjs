@@ -1,11 +1,16 @@
-# Tokoflix
+# Loremi Apps
 
-Tokoflix is a simple lorem ipsum text generator built with [React JS](http://facebook.github.io/react/index.html)
+Loremi is a simple lorem ipsum generator that provide some basic setting of number of pharagraps and starting sentences.
 
-## Demo
+## Tools
 
-Demo of this app is available on [Loremi](https://pandurijal.github.io/loremi/)
+Key tools in this project is :
+| Tool | Description |
+| -- | -- |
+| React | A JavaScript library for building user interfaces |
+| Copy to Clipboard | Select all the text and copying it just in one button |
+| Toastify | Simple popup notification when the text is copied |
 
-## API
+## API Source
 
-This app is using data from [Baseball Ipsum API](https://baseballipsum.apphb.com/Home/RestApi)
+(https://baseballipsum.apphb.com/Home/RestApi "Baseball Ipsum API")
