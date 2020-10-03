@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Filter from "./components/Filter";
 import TextBox from "./components/TextBox";
+import Loader from "./components/Loader/Loader";
 import "./App.css";
 
 class App extends Component {
   state = {
+    isFetching: false,
     paras: 1,
     lorem: true,
     content: []
@@ -23,6 +25,7 @@ class App extends Component {
           onInc={this.handleInc}
         />
         <TextBox content={this.state.content} />
+        {this.state.isFetching && <Loader />}
       </div>
     );
   }
@@ -42,11 +45,13 @@ class App extends Component {
   }
 
   fetchData = async e => {
+    this.setState({ isFetching: true });
     const api_call = await fetch(
       `https://cors-anywhere.herokuapp.com/http://baseballipsum.apphb.com/api/?paras=${
         this.state.paras
       }&startwithlorem=${this.state.lorem}`
     );
+    this.setState({ isFetching: false });
     const res = await api_call.json();
     this.setState({ content: res });
   };
